@@ -68,7 +68,7 @@ func (v *VHost) exchangeDeclare(name, kind string, passive bool, opt wabbit.Opti
 	}
 
 	if passive {
-		return fmt.Errorf("Exception (404) Reason: \"NOT_FOUND - no queue '%s' in vhost '/'\"", name)
+		return fmt.Errorf("Exception (404) Reason: \"NOT_FOUND - no queue '%s' in vhost '%s'\"", name, v.name)
 	}
 
 	switch kind {
@@ -97,7 +97,7 @@ func (v *VHost) queueDeclare(name string, passive bool, args wabbit.Option) (wab
 	}
 
 	if passive {
-		return nil, fmt.Errorf("Exception (404) Reason: \"NOT_FOUND - no exchange '%s' in vhost '/'\"", name)
+		return nil, fmt.Errorf("Exception (404) Reason: \"NOT_FOUND - no exchange '%s' in vhost '%s'\"", name, v.name)
 	}
 
 	q := NewQueue(name)
