@@ -7,7 +7,7 @@ import (
 	"sync/atomic"
 
 	"github.com/NeowayLabs/wabbit"
-	"github.com/cjorba/wabbit/utils"
+	"github.com/NeowayLabs/wabbit/utils"
 	"github.com/streadway/amqp"
 )
 
