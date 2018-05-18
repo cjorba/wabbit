@@ -46,9 +46,6 @@ func newServer(amqpuri string) *AMQPServer {
 
 // CreateChannel returns a new fresh channel
 func (s *AMQPServer) CreateChannel(connID string, conn wabbit.Conn) (wabbit.Channel, error) {
-	mu.Lock()
-	defer mu.Unlock()
-
 	if _, ok := s.channels[connID]; !ok {
 		s.channels[connID] = make([]*Channel, 0, MaxChannels)
 	}
