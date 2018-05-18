@@ -90,6 +90,13 @@ func (s *AMQPServer) Stop() error {
 	}
 
 	s.notifyChans = make(map[string]*utils.ErrBroadcast)
+
+	for _, chanMap := range s.channels {
+		for _, eachChan := range chanMap {
+			eachChan.Close()
+		}
+	}
+
 	return nil
 }
 
