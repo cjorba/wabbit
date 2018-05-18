@@ -336,7 +336,6 @@ func (ch *Channel) NotifyClose(c chan wabbit.Error) chan wabbit.Error {
 
 // Cancel closes deliveries for all consumers
 func (ch *Channel) Cancel(consumer string, noWait bool) error {
-	ch.errSpread.Write(utils.NewError(500, "forced close", true, false))
 	ch.Close()
 	return nil
 }
