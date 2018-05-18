@@ -325,6 +325,8 @@ func (ch *Channel) Close() error {
 	}
 	ch.publishListeners = []chan wabbit.Confirmation{}
 
+	ch.errSpread.Write(utils.NewError(500, "forced close", true, false))
+
 	return nil
 }
 
