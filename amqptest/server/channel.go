@@ -325,9 +325,6 @@ func (ch *Channel) Close() error {
 	}
 	ch.publishListeners = []chan wabbit.Confirmation{}
 
-	ch.errSpread.Delete(ch.errChan)
-	close(ch.errChan)
-
 	return nil
 }
 
@@ -335,4 +332,10 @@ func (ch *Channel) Close() error {
 func (ch *Channel) NotifyClose(c chan wabbit.Error) chan wabbit.Error {
 	ch.errSpread.Add(c)
 	return c
+}
+
+// Cancel closes deliveries for all consumers
+func (ch *Channel) Cancel(consumer string, noWait bool) error {
+	ch.Close()
+	return nil
 }
