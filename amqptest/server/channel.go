@@ -333,3 +333,9 @@ func (ch *Channel) NotifyClose(c chan wabbit.Error) chan wabbit.Error {
 	ch.errSpread.Add(c)
 	return c
 }
+
+// Cancel closes deliveries for all consumers
+func (ch *Channel) Cancel(consumer string, noWait bool) error {
+	ch.Close()
+	return nil
+}
